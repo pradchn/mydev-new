@@ -1,0 +1,74 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\froman\fcharset0 Times-Roman;
+\f3\froman\fcharset0 Times-Italic;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs23 \cf0 Introduction 
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf0 Zero trust (ZT) tenets or principles have been accepted as the guide markers for architecting all applications. There are several reasons why adherence to these tenets is critical for obtaining necessary security assurances, especially for cloud-native applications. The enterprise application environments for this class of applications are highly geographically distributed and span multiple cloud and on-premises environments (e.g., headquarters, enterprise-operated data centers, branch offices). Further, the user base consists of both remote and on-premises employees. These two features call for establishing trust in all of the data sources and computing services of the enterprise \'97 irrespective of their location \'97 through secure communication and the validation of access policies. \
+Apart from geographic distribution, another common feature of cloud-native applications is the presence of many microservices that are loosely coupled and collectively support business processes through extensive inter-service calls. This is augmented by an integrated infrastructure for providing all application services called the service mesh. These features emphasize the concept of identity for the various components of the application in the form of microservices as well as the users who access them through direct calls or clients (other services). This in turn highlights the critical need for authenticating these identities and for providing legitimate access on a per-session basis through a dynamic policy that takes the current status of the user, service, and requested resource into account. \
+The above requirements can only be met through a comprehensive policy framework. This document provides guidance for developing a policy framework that will form the foundation for realizing a zero trust architecture (ZTA) while incorporating zero trust principles into its design for cloud-native applications. The policy framework should also consist of a comprehensive set of policies that span all critical entities and resources in the application stack, including the network, network devices, users, and services. \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Background \'97 Zero Trust Principles and Zero Trust Architecture 
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf0 A summary of the zero trust principles and the definition of a zero trust architecture, as described in SP 800-207, 
+\f3\i Zero Trust Architecture 
+\f2\i0 [1], are: \
+\pard\pardeftab720\sa59\partightenfactor0
+\cf0 \'95 Zero trust is the term for an evolving set of cybersecurity paradigms that move defenses from static, network-based perimeters to focus on users and resources. It is a set of security primitives rather than a particular set of technologies. Zero trust assumes that there is no implicit trust granted to user accounts based solely on their physical or network location (i.e., local area networks versus the internet) or to endpoints (devices) based on their ownership (e.g., enterprise or personally owned). Zero trust focuses on protecting resources (e.g., devices, services, workflows, network accounts) rather than network segments, as the network location is no longer seen as the prime component to the security posture of the resource. \
+\pard\pardeftab720\partightenfactor0
+\cf0 \'95 A zero trust architecture uses zero trust principles to plan industrial and enterprise infrastructures and workflows. \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs20 \cf0 NIST SP 800-207A ZTA Model for Access Control in Cloud-Native September 2023 Applications in Multi-Location Environments \
+3 \
+\pard\pardeftab720\partightenfactor0
+
+\fs23 \cf0 NIST\'92s guidance on zero trust also contains an abstract definition of zero trust architecture and gives general deployment models and use cases with which zero trust could improve an enterprise\'92s overall information technology security posture. \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Relationship to Other NIST Guidance Documents 
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf0 Since the current document provides guidance for the realization of ZTA for cloud-native applications hosted in multiple locations (on-premises and multiple clouds) and the enforcement of ZT principles requires policies that are associated with various security services, it will be useful to refer to the following documents. These documents provide background information for the architecture of a microservices-based application with service mesh as well as guidance for configuring specific security services. The current document expands the reference environment to one in which the Information Technology (IT) application infrastructure of an enterprise spans multiple premises and multiple cloud provider locations as well as addresses the range of policies that is required for comprehensive security assurance. \
+\pard\pardeftab720\sa59\partightenfactor0
+\cf0 \'95 SP 800-204A, 
+\f3\i Building Secure Microservices-Based Applications Using Service Mesh Architecture 
+\f2\i0 [2], provides deployment guidance for various security services (e.g., establishment of secure sessions, security monitoring) for a microservices-based application using a dedicated infrastructure (i.e., a service mesh) based on service proxies that operate independently of the application code. \
+\pard\pardeftab720\partightenfactor0
+\cf0 \'95 SP 800-204B, 
+\f3\i Attribute-Based Access Control for Microservices-Based Applications Using a Service Mesh 
+\f2\i0 [3], provides deployment guidance for building an authentication and authorization framework within the service mesh that meets the security requirements. This may include establishing (1) zero trust by enabling mutual authentication in communication between any pair of services and (2) a robust access control mechanism based on an access control model (e.g., the attribute-based access control [ABAC] model) that can be used to express a wide set of policies and is scalable in terms of user base, objects (resources), and deployment environment. \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Scope 
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf0 The scope of this document includes: \
+\pard\pardeftab720\sa59\partightenfactor0
+\cf0 \'95 Identifying the requirements for realizing a ZTA for granular access control in microservices-based application platforms that include a service mesh infrastructure. \
+\'95 Identifying the infrastructural elements that should be part of the platform in order to configure and implement ZT principles. \
+\'95 Guidance for deploying a ZTA in the above platform and outlining the security assurances that the deployment can provide. \
+\pard\pardeftab720\partightenfactor0
+\cf0 \'95 Recommend multi-tier policies that combine network-level (both coarse-grained and fine-grained) and identity-tier policies for enforcing ZT principles. \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs20 \cf0 NIST SP 800-207A ZTA Model for Access Control in Cloud-Native September 2023 Applications in Multi-Location Environments \
+4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs23 \cf0 The reference application platform consists of microservices-based applications using a service mesh with sidecar proxies as the application services infrastructure. The service mesh technology variation that uses a sidecar-less approach is not considered as the deployment of this technology is still in early stages. }
